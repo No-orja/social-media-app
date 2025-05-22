@@ -3,132 +3,278 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="./node_modules/bootstrap/dist/css/bootstrap.min.css"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap"
       rel="stylesheet"
     />
+  <title>TANDNA</title>
 
-    <title>Final Project</title>
-    <style>
-      body {
-        padding-top: 70px;
-        font-family: "Playfair Display", serif;
-      }
-
-      .navbar {
-        background-color: rgb(52, 51, 51) !important;
-      }
-
-      .navbar a,
-      .navbar svg {
-        color: rgb(66, 119, 217) !important;
-      }
-
-      #header-img {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .user-img {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-      }
-      .input-group {
-        position: relative;
-      }
-
-      .input-group .form-control {
-        padding-right: 60px; /* Adjust space for icons */
-      }
-
-      .input-group-text {
-        background-color: transparent;
-        border: none;
-        padding: 0;
-      }
-
-      .input-group-text svg {
-        vertical-align: middle;
-        cursor: pointer;
-        color: rgb(66, 119, 217);
-        margin-left: 10px; /* Space between icons */
-      }
-
-      .modal-body img {
-        width: 100%;
-        height: auto;
-        max-width: 100%;
-        display: block;
-        margin: 0 auto;
-      }
-      .heart-red {
-        color: red;
-      }
-      .profile-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 200px; 
+  <style>
+    body {
+      padding-top: 70px;
+      font-family: "Playfair Display", serif;
     }
-    
+    /* #makePost{
+      display:none;
+    }
+    #posts{
+      display:none;
+    } */
+    .navbar {
+      background-color: rgb(52, 51, 51) !important;
+    }
+    .navbar a,
+    .navbar svg {
+      color: rgb(66, 119, 217) !important;
+    }
+    #header-img {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .user-img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+    .input-group {
+      position: relative;
+    }
+    .input-group .form-control {
+      padding-right: 60px; /* Adjust space for icons */
+    }
+    .input-group-text {
+      background-color: transparent;
+      border: none;
+      padding: 0;
+    }
+    .input-group-text svg {
+      vertical-align: middle;
+      cursor: pointer;
+      color: rgb(66, 119, 217);
+      margin-left: 10px; /* Space between icons */
+    }
+    .modal-body img {
+      width: 100%;
+      height: auto;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    .heart-red {
+      color: red;
+    }
+
+    .profile-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 200px; 
+    }
     .profile-image {
-        width: 150px; 
-        height: 150px; 
-        border-radius: 50%;
-        object-fit: cover; 
-        border: 3px solid #ddd; 
-        margin-top: 20px;
+      width: 150px; 
+      height: 150px; 
+      border-radius: 50%;
+      object-fit: cover; 
+      border: 3px solid #ddd; 
+      margin-top: 20px;
     }
-    
-    @media (max-width: 600px) {
-        .profile-image {
-            width: 100px; /* حجم أصغر للشاشات الصغيرة */
-            height: 100px;
-        }
+
+    .profileImageFullContener{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 500px; 
     }
-    .user-main-info {
-        color: white;
-        margin-bottom: 15px;
+    .profileImageFull{
+      width: 500px; 
+      height: 500px; 
+      border-radius: 50%;
+      object-fit: cover; 
+      border: 3px solid #ddd; 
+      margin-top: 20px;
+
     }
-    
-    .user-main-info h6 {
-        margin: 0;
-        font-weight: bold;
+
+    .post-image-container {
+      position: relative;
+      overflow: hidden;
+      max-height: 700px;
+      cursor: pointer;
+      margin-top: 10px;
+      position: relative;
     }
-    
-    .user-main-info p {
-        margin: 0;
-        font-size: 16px;
+
+    .post-img {
+      object-position: top;
+      object-fit: cover;
+      border-radius: 10px;
     }
-    
-    .number-info {
-        color: white;
-        text-align: center;
+    .post-image-container.after-visible::after {
+      content: "See All";
+      position: absolute;
+      bottom: 0;
+      left:0;
+      height: 30px;
+      width: 100%;
+      background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.644));
+      pointer-events: none;
+      border-radius: 0 0  10px 10px;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      visibility: visible;
     }
-    
-    .number-info h6 {
-        margin: 0;
-        font-weight: bold;
-    }
-    
-    .number-info span {
-        display: block;
-        font-size: 30px;
-        font-weight: bold;
-    }
-    
-    
-      
+  /* .container {
+    display: none !important;
+  } */
+   
+.lds-roller,
+.lds-roller div,
+.lds-roller div:after {
+  box-sizing: border-box;
+}
+.lds-roller {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-roller div {
+  animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  transform-origin: 40px 40px;
+}
+.lds-roller div:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  width: 7.2px;
+  height: 7.2px;
+  border-radius: 50%;
+  background: currentColor;
+  margin: -3.6px 0 0 -3.6px;
+}
+.lds-roller div:nth-child(1) {
+  animation-delay: -0.036s;
+}
+.lds-roller div:nth-child(1):after {
+  top: 62.62742px;
+  left: 62.62742px;
+}
+.lds-roller div:nth-child(2) {
+  animation-delay: -0.072s;
+}
+.lds-roller div:nth-child(2):after {
+  top: 67.71281px;
+  left: 56px;
+}
+.lds-roller div:nth-child(3) {
+  animation-delay: -0.108s;
+}
+.lds-roller div:nth-child(3):after {
+  top: 70.90963px;
+  left: 48.28221px;
+}
+.lds-roller div:nth-child(4) {
+  animation-delay: -0.144s;
+}
+.lds-roller div:nth-child(4):after {
+  top: 72px;
+  left: 40px;
+}
+.lds-roller div:nth-child(5) {
+  animation-delay: -0.18s;
+}
+.lds-roller div:nth-child(5):after {
+  top: 70.90963px;
+  left: 31.71779px;
+}
+.lds-roller div:nth-child(6) {
+  animation-delay: -0.216s;
+}
+.lds-roller div:nth-child(6):after {
+  top: 67.71281px;
+  left: 24px;
+}
+.lds-roller div:nth-child(7) {
+  animation-delay: -0.252s;
+}
+.lds-roller div:nth-child(7):after {
+  top: 62.62742px;
+  left: 17.37258px;
+}
+.lds-roller div:nth-child(8) {
+  animation-delay: -0.288s;
+}
+.lds-roller div:nth-child(8):after {
+  top: 56px;
+  left: 12.28719px;
+}
+@keyframes lds-roller {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
   
-    </style>
+  @media (max-width: 600px) {
+      .profile-image {
+          width: 100px;
+          height: 100px;
+      }
+  }
+  .user-main-info {
+      color: white;
+      margin-bottom: 15px;
+  }
+  
+  .user-main-info h6 {
+      margin: 0;
+      font-weight: bold;
+  }
+  
+  .user-main-info p {
+      margin: 0;
+      font-size: 16px;
+  }
+  
+  .number-info {
+      color: white;
+      text-align: center;
+  }
+  
+  .number-info h6 {
+      margin: 0;
+      font-weight: bold;
+  }
+  
+  .number-info span {
+      display: block;
+      font-size: 30px;
+      font-weight: bold;
+  }  
+  .hidden-until-load {
+    display: none;
+  }
+
+  </style>
+
   </head>
+
   <body style="background-color: rgb(29, 29, 29)">
+
+    <!-- loader -->
+    <div id="loader" style="background-color: rgba(255, 255, 255, 0.587) ;position:fixed; top:0px; bottom:0px; right:0px; left:0px; margin:auto auto; display:flex;align-items:center;justify-content:center;z-index:9999; border-radius:20px; height: 100px;width:100px">
+      <div class="lds-roller">
+        <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+      </div>     
+    </div>
+    <!-- // loader // -->
+
     <!-- LOGIN MODAL -->
     <div
       class="modal fade"
@@ -317,7 +463,7 @@
     </div>
     <!-- // REGISTER // -->
 
-    <!--  -->
+    <!--COMMENTS  -->
     <div
       class="modal fade"
       id="showPostByModal"
@@ -436,9 +582,9 @@
             </button>
             <button
               type="button"
-              class="btn btn-primary"
+              class="cretePostBtn btn btn-primary"
               id="cretePostBtn"
-              onclick="btnPostCreateWithImg()"
+              onclick="handlePostModalAction()"
             >
               Create post
             </button>
@@ -447,9 +593,8 @@
       </div>
     </div>
 
-
-            <!-- DELETE -->
-            <div class="modal fade" id="delete-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- DELETE -->
+    <div class="modal fade" id="delete-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
@@ -465,387 +610,313 @@
         
                 </div>
               </div>
-            </div>
-    <!-- ```````````````````````````````````````````````````````` -->
+    </div>
 
-    <!-- NAV PART -->
-    <div class="container">
-      <div class="d-flex justify-content-center">
-        <div class="col-9">
-          <nav
-            class="navbar navbar-expand-lg bg-body-tertiary shadow rounded pt-3 fixed-top"
-          >
-            <div class="container-fluid">
-              <a
-                class="navbar-brand"
-                href="#"
-                id="logo"
-                style="margin-left: 50px; font-size: 30px"
-                >Logo</a
-              >
-              <button
-                class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarNav"
-                aria-controls="navbarNav"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div
-                class="collapse navbar-collapse"
-                id="navbarNav"
-                style="padding-left: 20px"
-              >
-                <ul class="navbar-nav">
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="index.html">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="20"
-                        height="20"
-                        fill="currentColor"
-                        class="bi bi-house-door-fill"
-                        viewBox="0 0 16 16"
-                        style="color: rgb(27, 27, 120)"
-                      >
-                        <path
-                          d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5"
-                        />
-                      </svg>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a
-                      class="nav-link"
-                      
-                      style="cursor: pointer"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="20"
-                        height="20"
-                        fill="currentColor"
-                        class="bi bi-person-circle"
-                        viewBox="0 0 16 16"
-                        style="color: rgb(53, 53, 194)"
-                      >
-                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-                        <path
-                          fill-rule="evenodd"
-                          d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
-                        />
-                      </svg>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" style="cursor: pointer">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="20"
-                        height="20"
-                        fill="currentColor"
-                        class="bi bi-gear-wide-connected"
-                        viewBox="0 0 16 16"
-                        style="color: rgb(53, 53, 194)"
-                        onclick="profileClicked()"
-                      >
-                        <path
-                          d="M7.068.727c.243-.97 1.62-.97 1.864 0l.071.286a.96.96 0 0 0 1.622.434l.205-.211c.695-.719 1.888-.03 1.613.931l-.08.284a.96.96 0 0 0 1.187 1.187l.283-.081c.96-.275 1.65.918.931 1.613l-.211.205a.96.96 0 0 0 .434 1.622l.286.071c.97.243.97 1.62 0 1.864l-.286.071a.96.96 0 0 0-.434 1.622l.211.205c.719.695.03 1.888-.931 1.613l-.284-.08a.96.96 0 0 0-1.187 1.187l.081.283c.275.96-.918 1.65-1.613.931l-.205-.211a.96.96 0 0 0-1.622.434l-.071.286c-.243.97-1.62.97-1.864 0l-.071-.286a.96.96 0 0 0-1.622-.434l-.205.211c-.695.719-1.888.03-1.613-.931l.08-.284a.96.96 0 0 0-1.186-1.187l-.284.081c-.96.275-1.65-.918-.931-1.613l.211-.205a.96.96 0 0 0-.434-1.622l-.286-.071c-.97-.243-.97-1.62 0-1.864l.286-.071a.96.96 0 0 0 .434-1.622l-.211-.205c-.719-.695-.03-1.888.931-1.613l.284.08a.96.96 0 0 0 1.187-1.186l-.081-.284c-.275-.96.918-1.65 1.613-.931l.205.211a.96.96 0 0 0 1.622-.434zM12.973 8.5H8.25l-2.834 3.779A4.998 4.998 0 0 0 12.973 8.5m0-1a4.998 4.998 0 0 0-7.557-3.779l2.834 3.78zM5.048 3.967l-.087.065zm-.431.355A4.98 4.98 0 0 0 3.002 8c0 1.455.622 2.765 1.615 3.678L7.375 8zm.344 7.646.087.065z"
-                        />
-                      </svg>
-                    </a>
-                  </li>
-                </ul>
-                <!-- LOGIN -->
-                <div
-                  class="d-flex w-100 justify-content-end"
-                  id="loginDiv"
-                  style="display: flex; gap: 15px; justify-content: flex-end"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="27"
-                    height="27"
-                    fill="currentColor"
-                    class="bi bi-box-arrow-in-right"
-                    viewBox="0 0 16 16"
-                    id="btn-login"
-                    type="button"
-                    data-bs-toggle="modal"
-                    data-bs-target="#Login-modal"
-                    style="margin-left: 0"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z"
-                    />
-                    <path
-                      fill-rule="evenodd"
-                      d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"
-                    />
-                  </svg>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="27"
-                    height="27"
-                    fill="currentColor"
-                    class="bi bi-plus-circle-fill"
-                    viewBox="0 0 16 16"
-                    id="btn-register"
-                    class="btn btn-outline-success"
-                    data-bs-toggle="modal"
-                    data-bs-target="#register-modal"
-                    style="
-                      margin-left: 15px;
-                      cursor: pointer;
-                      margin-right: 30px;
-                    "
-                  >
-                    <path
-                      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"
-                    />
-                  </svg>
-                </div>
-                <!-- // LOGIN // -->
-                <!-- LOGOUT -->
-                <div class="d-flex w-100 justify-content-end" id="logoutDiv">
-                  <img
-                    src="./Programmers-and-software-development-professionals.jpg"
-                    id="nav-img"
-                    class="rounded-circle border border-4"
-                    style="width: 50px; height: 50px"
-                  />
-                  <b
-                    style="margin-left: 10px; padding-top: 15px; color: white"
-                    id="nav-user"
-                    >@noorjaber</b
-                  >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="28"
-                    height="28"
-                    fill="currentColor"
-                    class="bi bi-box-arrow-right"
-                    viewBox="0 0 16 16"
-                    onclick="logoutBtn()"
-                    style="
-                      margin-top: 15px;
-                      margin-left: 30px;
-                      cursor: pointer;
-                      color: rgb(53, 53, 194);
-                    "
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"
-                    />
-                    <path
-                      fill-rule="evenodd"
-                      d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"
-                    />
-                  </svg>
-                </div>
-                <!-- // LOGOUT // -->
-              </div>
-            </div>
-          </nav>
+    <!-- Modal to show full image -->
+    <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.666) ">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-transparent border-0">
+          <img id="modalImage" src="" class="w-100 rounded" style="max-height: 90vh; object-fit: contain;">
         </div>
       </div>
     </div>
-    <!--// NAV PART // -->
-    <div class="profile-container">
-        <img src="./Programmers-and-software-development-professionals.jpg" alt="User Profile Picture" class="profile-image" id="imgInfo">
-    </div>
-
-    <div class="container">
-        <div class="d-flex justify-content-center">
-            <div class="col-9 mt-4" id="userInfo">
-                <!-- MAIN INFO -->
-                <div class="card shadow" style="background-color: rgb(52, 51, 51)">
-                    <div class="card-body">
-                        <div class="row">
-                            <!-- EMAIL, PASSWORD, USERNAME -->
-                            <div class="col-6 d-flex flex-column" id="main-info">
-                                <div class="user-main-info" >
-                                    <h6>Email:</h6>
-                                    <p id="email">noorjaber29@gmail.com</p>
-                                </div>
-                                <div class="user-main-info">
-                                    <h6>Username:</h6>
-                                    <p id="username">noor99</p>
-                                </div>
-                                <div class="user-main-info">
-                                    <h6>Name:</h6>
-                                    <p id="name">Noor Jaber</p>
-                                </div>
-                            </div>
-                            <!-- Count -->
-                            <div class="col-6 d-flex flex-column justify-content-around">
-                                <div class="number-info">
-                                    <h6>Posts</h6>
-                                    <span id="posts-count" style="font-size: 30px;">13</span>
-                                </div>
-                                <div class="number-info">
-                                    <h6>Comments</h6>
-                                    <span id="comment-count" style="font-size: 30px;">20</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- Modal to show full image -->
+    <div class="modal fade" id="imageProfile" tabindex="-1" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.666) ">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="profileImageFullContener modal-content bg-transparent border-0">
+          <img id="profileImageFull" class="profileImageFull" src="">
         </div>
+      </div>
     </div>
-
-    <div class="container">
-      <div class="d-flex justify-content-center">
-        <div class="col-9 mt-4" id="makePostDivY">
-          <!-- MAIN INFO -->
-          <div class="card shadow" style="background-color: rgb(52, 51, 51)">
-            <div class="card-body">
-              <div class="row align-items-center">
-                <!-- USER IMAGE -->
-                <div class="col-auto" id="header-img">
-                  <img
-                    id="userNowImg"
-                    src="c:\Users\jaber\OneDrive\Desktop\final\2-2.png"
-                    alt="User Image"
-                    class="user-img"
-                  />
-                </div>
-                <!-- INPUT WITH ICON -->
-                <div class="col">
-                  <div class="input-group">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="What's on your mind?"
-                      aria-label="Post content"
-                      id="bodyWithoutImg"
-                    />
-                    <span class="input-group-text">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="20"
-                        height="20"
-                        fill="currentColor"
-                        class="bi bi-image"
-                        viewBox="0 0 16 16"
-                        style="color: rgb(66, 119, 217)"
-                        id="add-btn-with-img"
-                        data-bs-toggle="modal"
-                        data-bs-target="#addPostWithImg-modal"
+    <!-- ```````````````````````````````````````````````````````` -->
+      <!-- NAV PART -->
+      <div class="container">
+        <div class="d-flex justify-content-center">
+          <div class="col-9">
+            <nav
+              class="navbar navbar-expand-lg bg-body-tertiary shadow rounded pt-3 fixed-top"
+            >
+              <div class="container-fluid">
+                <a
+                  class="navbar-brand"
+                  href="index.html"
+                  id="logo"
+                  style="margin-left: 50px; font-size: 30px"
+                  >Noor</a
+                >
+                <button
+                  class="navbar-toggler"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#navbarNav"
+                  aria-controls="navbarNav"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation"
+                >
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div
+                  class="collapse navbar-collapse"
+                  id="navbarNav"
+                  style="padding-left: 20px"
+                >
+                  <ul class="navbar-nav">
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" style="cursor: pointer;">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="20"
+                          height="20"
+                          fill="currentColor"
+                          class="bi bi-house-door-fill"
+                          viewBox="0 0 16 16"
+                          style="color: rgb(27, 27, 120)"
+                          onclick="homeClicked()"
+                        >
+                          <path
+                            d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5"
+                          />
+                        </svg>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a
+                        class="nav-link"
+                        style="cursor: pointer"
                       >
-                        <path
-                          d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"
-                        />
-                        <path
-                          d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1z"
-                        />
-                      </svg>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="20"
-                        height="20"
-                        fill="currentColor"
-                        class="bi bi-send"
-                        viewBox="0 0 16 16"
-                        style="color: rgb(66, 119, 217)"
-                        onclick="btnPostCreate()"
-                      >
-                        <path
-                          d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z"
-                        />
-                      </svg>
-                    </span>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="20"
+                          height="20"
+                          fill="currentColor"
+                          class="bi bi-person-circle"
+                          viewBox="0 0 16 16"
+                          style="color: rgb(53, 53, 194)"
+                          onclick="homeClicked()"
+                        >
+                          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                          <path
+                            fill-rule="evenodd"
+                            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
+                          />
+                        </svg>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" style="cursor: pointer">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="20"
+                          height="20"
+                          fill="currentColor"
+                          class="bi bi-gear-wide-connected"
+                          viewBox="0 0 16 16"
+                          style="color: rgb(53, 53, 194)"
+                        >
+                          <path
+                            d="M7.068.727c.243-.97 1.62-.97 1.864 0l.071.286a.96.96 0 0 0 1.622.434l.205-.211c.695-.719 1.888-.03 1.613.931l-.08.284a.96.96 0 0 0 1.187 1.187l.283-.081c.96-.275 1.65.918.931 1.613l-.211.205a.96.96 0 0 0 .434 1.622l.286.071c.97.243.97 1.62 0 1.864l-.286.071a.96.96 0 0 0-.434 1.622l.211.205c.719.695.03 1.888-.931 1.613l-.284-.08a.96.96 0 0 0-1.187 1.187l.081.283c.275.96-.918 1.65-1.613.931l-.205-.211a.96.96 0 0 0-1.622.434l-.071.286c-.243.97-1.62.97-1.864 0l-.071-.286a.96.96 0 0 0-1.622-.434l-.205.211c-.695.719-1.888.03-1.613-.931l.08-.284a.96.96 0 0 0-1.186-1.187l-.284.081c-.96.275-1.65-.918-.931-1.613l.211-.205a.96.96 0 0 0-.434-1.622l-.286-.071c-.97-.243-.97-1.62 0-1.864l.286-.071a.96.96 0 0 0 .434-1.622l-.211-.205c-.719-.695-.03-1.888.931-1.613l.284.08a.96.96 0 0 0 1.187-1.186l-.081-.284c-.275-.96.918-1.65 1.613-.931l.205.211a.96.96 0 0 0 1.622-.434zM12.973 8.5H8.25l-2.834 3.779A4.998 4.998 0 0 0 12.973 8.5m0-1a4.998 4.998 0 0 0-7.557-3.779l2.834 3.78zM5.048 3.967l-.087.065zm-.431.355A4.98 4.98 0 0 0 3.002 8c0 1.455.622 2.765 1.615 3.678L7.375 8zm.344 7.646.087.065z"
+                          />
+                        </svg>
+                      </a>
+                    </li>
+                  </ul>
+                  <!-- LOGIN -->
+                  <div
+                    class="d-flex w-100 justify-content-end"
+                    id="loginDiv"
+                    style="display: flex; gap: 15px; justify-content: flex-end"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="27"
+                      height="27"
+                      fill="currentColor"
+                      class="bi bi-box-arrow-in-right"
+                      viewBox="0 0 16 16"
+                      id="btn-login"
+                      type="button"
+                      data-bs-toggle="modal"
+                      data-bs-target="#Login-modal"
+                      style="margin-left: 0"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z"
+                      />
+                      <path
+                        fill-rule="evenodd"
+                        d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="27"
+                      height="27"
+                      fill="currentColor"
+                      class="bi bi-plus-circle-fill"
+                      viewBox="0 0 16 16"
+                      id="btn-register"
+                      class="btn btn-outline-success"
+                      data-bs-toggle="modal"
+                      data-bs-target="#register-modal"
+                      style="
+                        margin-left: 15px;
+                        cursor: pointer;
+                        margin-right: 30px;
+                      "
+                    >
+                      <path
+                        d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"
+                      />
+                    </svg>
                   </div>
+                  <!-- // LOGIN // -->
+                  <!-- LOGOUT -->
+                  <div class="d-flex w-100 justify-content-end" id="logoutDiv">
+                    <img
+                      src="./Programmers-and-software-development-professionals.jpg"
+                      id="nav-img"
+                      class="rounded-circle border border-4"
+                      style="width: 50px; height: 50px"
+                    />
+                    <b
+                      style="margin-left: 10px; padding-top: 15px; color: white"
+                      id="nav-user"
+                      >@noorjaber</b
+                    >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="28"
+                      height="28"
+                      fill="currentColor"
+                      class="bi bi-box-arrow-right"
+                      viewBox="0 0 16 16"
+                      onclick="logoutBtn()"
+                      style="
+                        margin-top: 15px;
+                        margin-left: 30px;
+                        cursor: pointer;
+                        color: rgb(53, 53, 194);
+                      "
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"
+                      />
+                      <path
+                        fill-rule="evenodd"
+                        d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"
+                      />
+                    </svg>
+                  </div>
+                  <!-- // LOGOUT // -->
                 </div>
               </div>
-            </div>
+            </nav>
           </div>
         </div>
       </div>
-    </div>
+      <!--// NAV PART // -->
+    <main id="appContent" class="hidden-until-load">
+      <!-- Profile Image -->
+      <div class="profile-container">
+          <img src="./Programmers-and-software-development-professionals.jpg" 
+            alt="User Profile Picture" 
+            id="imgInfo"
+            class="profile-image rounded-circle border border-3" 
+            style="object-fit: cover; cursor: pointer; "
+          >
+      </div>
 
-
-        <!-- MAIN container -->
-        <div class="container">
-            <div class="d-flex justify-content-center mt-4">
-              <div class="col-9">
-                <!-- POSTS -->
-                <div class="posts" id="userPost">
-                  <div
-                    class="card shadow"
-                    style="margin-bottom: 50px; background-color: rgb(52, 51, 51)"
-                  >
-                    <div
-                      class="card-header d-flex align-items-center"
-                      style="background-color: rgb(52, 51, 51)"
-                    >
-                      <img
-                        src="./Programmers-and-software-development-professionals.jpg"
-                        class="rounded-circle border border-4"
-                        style="width: 40px; height: 40px; margin-right: 10px"
-                      />
-      
-                      <div>
-                        <h4 style="margin: 0; color: white" id="newPostName">noorjaber</h4>
-                        <div class="d-flex align-items-center">
-                          <p style="margin: 0; color: white" id="newPostUsername" >@nr.jb29</p>
-                          <h6 style="margin: 0 0 0 10px; color: rgb(169, 169, 169)">
-                            5 min ago
-                          </h6>
-                        </div>
+      <!-- Information -->
+      <div class="container">
+          <div class="d-flex justify-content-center">
+              <div class="col-9 mt-4" id="userInfo">
+                  <!-- MAIN INFO -->
+                  <div class="card shadow" style="background-color: rgb(52, 51, 51)">
+                      <div class="card-body">
+                          <div class="row">
+                              <!-- EMAIL, PASSWORD, USERNAME -->
+                              <div class="col-6 d-flex flex-column" id="main-info">
+                                  <div class="user-main-info" >
+                                      <h6>Email:</h6>
+                                      <p id="email">noorjaber29@gmail.com</p>
+                                  </div>
+                                  <div class="user-main-info">
+                                      <h6>Username:</h6>
+                                      <p id="username">noor99</p>
+                                  </div>
+                                  <div class="user-main-info">
+                                      <h6>Name:</h6>
+                                      <p id="name">Noor Jaber</p>
+                                  </div>
+                              </div>
+                              <!-- Count -->
+                              <div class="col-6 d-flex flex-column justify-content-around">
+                                  <div class="number-info">
+                                      <h6>Posts</h6>
+                                      <span id="posts-count" style="font-size: 30px;">13</span>
+                                  </div>
+                                  <div class="number-info">
+                                      <h6>Comments</h6>
+                                      <span id="comment-count" style="font-size: 30px;">20</span>
+                                  </div>
+                              </div>
+                          </div>
                       </div>
-                    </div>
-      
-                    <div class="card-body">
-                      <img
-                        src="./tulips-planting-and-growing-tulips-1402137-08-aee8737736d848ef95f0a340705d9bf9.jpg"
-                        class="w-100"
-                        style="height: 24pc"
-                        
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <!-- Add post with image -->
+      <div class="container" id="makePost">
+        <div class="d-flex justify-content-center">
+          <div class="col-9 mt-4" id="makePostDivY">
+            <!-- MAIN INFO -->
+            <div class="card shadow" style="background-color: rgb(52, 51, 51)">
+              <div class="card-body">
+                <div class="row align-items-center">
+                  <!-- USER IMAGE -->
+                  <div class="col-auto" id="header-img">
+                    <img
+                      id="userNowImg"
+                      alt="User Image"
+                      class="userNowImg  rounded-circle border border-3" 
+                      style="width: 40px; height: 40px; margin-right: 10px; object-fit: cover;"
+                    />
+                    
+                  </div>
+                  <!-- INPUT WITH ICON -->
+                  <div class="col">
+                    <div class="input-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="What's on your mind?"
+                        aria-label="Post content"
+                        id="bodyWithoutImg"
                       />
-                      <h5 style="color: white" class="pt-2">Hi every one</h5>
-                      <p style="color: white">let's go to study together</p>
-                      <hr style="color: white" />
-                      <div class="d-flex align-items-center" style="color: white">
-                        <span style="margin-left: 5px">(3) Comments</span>
-      
+                      <span class="input-group-text">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="20"
                           height="20"
                           fill="currentColor"
-                          class="bi bi-heart"
+                          class="bi bi-image"
                           viewBox="0 0 16 16"
-                          style="margin-left: 15px; cursor: pointer"
+                          style="color: rgb(66, 119, 217)"
+                          id="add-btn-with-img"
+                          data-bs-toggle="modal"
+                          data-bs-target="#addPostWithImg-modal"
                         >
                           <path
-                            d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"
-                          />
-                        </svg>
-      
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="20"
-                          height="20"
-                          fill="currentColor"
-                          class="bi bi-chat-dots"
-                          viewBox="0 0 16 16"
-                          style="margin-left: 15px; cursor: pointer"
-                        >
-                          <path
-                            d="M5 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2"
+                            d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"
                           />
                           <path
-                            d="m2.165 15.803.02-.004c1.83-.363 2.948-.842 3.468-1.105A9 9 0 0 0 8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6a10.4 10.4 0 0 1-.524 2.318l-.003.011a11 11 0 0 1-.244.637c-.079.186.074.394.273.362a22 22 0 0 0 .693-.125m.8-3.108a1 1 0 0 0-.287-.801C1.618 10.83 1 9.468 1 8c0-3.192 3.004-6 7-6s7 2.808 7 6-3.004 6-7 6a8 8 0 0 1-2.088-.272 1 1 0 0 0-.711.074c-.387.196-1.24.57-2.634.893a11 11 0 0 0 .398-2"
+                            d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1z"
                           />
                         </svg>
-      
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="20"
@@ -853,255 +924,137 @@
                           fill="currentColor"
                           class="bi bi-send"
                           viewBox="0 0 16 16"
-                          style="margin-left: 15px; cursor: pointer"
+                          style="color: rgb(66, 119, 217)"
+                          onclick="btnPostCreate()"
                         >
                           <path
                             d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z"
                           />
                         </svg>
-                      </div>
+                      </span>
                     </div>
                   </div>
                 </div>
-                <!-- // POSTS // -->
               </div>
             </div>
           </div>
-          <!-- // MAIN container // -->
-  </body>
+        </div>
+      </div>
 
-  <script src="./node_modules/axios/dist/axios.min.js"></script>
-  <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script src="profileUserPage.js"></script>
-  
-<script>
-    setupUI()
-    getUserForPage()
-    showPostUser()
-
-    function getUserIdForPage(){
-      const urlPost = new URLSearchParams(window.location.search);
-      const id = urlPost.get("userid");
-      let user = getUser()
-      let token = localStorage.getItem("token")
-      console.log(user.id)
-      console.log(id);
-      let hiddenDivAddComment = document.getElementById("makePostDivY")
-      if(user.id == id && token != null){
-        hiddenDivAddComment.style.setProperty("display", "block", "important");
-        
-      }else{
-        hiddenDivAddComment.style.setProperty("display", "none", "important");
-
-      }
-      return id
-    }
-
-
-function getUserForPage() {
-      const id = getUserIdForPage();
-      axios.get(`https://tarmeezacademy.com/api/v1/users/${id}`)
-          .then(function(response) {
-              const user = response.data.data;
-              const profileImage = user.profile_image || 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png';
-              console.log(response.data.data.profile_image)
-              document.getElementById("email").innerHTML = user.email;
-              document.getElementById("name").innerHTML = user.name;
-              document.getElementById("username").innerHTML = user.username;
-              document.getElementById("comment-count").innerHTML = user.comments_count;
-              document.getElementById("posts-count").innerHTML = user.posts_count;
-              document.getElementById("imgInfo").src = profileImage; // Ensure this is set correctly
-
-          })
-          .catch(function(error) {
-              console.error("There was an error fetching the user data!", error);
-          });
-  }
-  
-
-  
-function showPostUser() {
-        const id = getUserIdForPage()
-        axios.get(`${url}/users/${id}/posts`)
-          .then(function (response) {
-
-            let user = getUser()
-            const token = localStorage.getItem("token");
-            const posts = response.data.data || [];
-            let postsHTML = "";
-            document.getElementById("userPost").innerHTML = "";
-            
-            for (let post of posts) {
-            
-
-
-              let isMyPost = user != null && post.author.id == user.id;
-              let btnEditContent = ``;
-              if (isMyPost) {
-                btnEditContent = `
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16"  style="color:white; cursor:pointer" id="updateBtn" onclick="btnPostUpdate('${encodeURIComponent(JSON.stringify(post))}')" >
-                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
-                </svg>
-                
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16" style="color:#a32a2a; cursor:pointer" id="deleteBtn" onclick="btnPostDelete('${encodeURIComponent(JSON.stringify(post))}')" >
-                    <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
-                </svg>
-                `
-                ;
-              }
-              let postImage = (typeof post.image === 'string' && post.image) ? post.image : '';
-              let profileImage = (typeof post.author.profile_image === 'string' && post.author.profile_image) ?
-               post.author.profile_image : 
-               'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png';
-              let author = post.author;
-              postsHTML += `
-                <div class="posts" id="posts">
-                  <div class="card shadow" style="margin-bottom: 50px; background-color: rgb(52, 51, 51);">
-                    <div class="card-header d-flex align-items-center justify-content-between" style="background-color: rgb(52, 51, 51);">
+      <!-- MAIN container -->
+      <div class="container" id="posts">
+          <div class="d-flex justify-content-center mt-4" >
+            <div class="col-9" style=" max-width: 750px; max-height: 600px;" >
+              <!-- POSTS -->
+              <div class="posts" id="userPost">
+                <div
+                  class="card shadow"
+                  style="margin-bottom: 50px; background-color: rgb(52, 51, 51)"
+                >
+                  <div
+                    class="card-header d-flex align-items-center"
+                    style="background-color: rgb(52, 51, 51)"
+                  >
+                    <img
+                      src="./Programmers-and-software-development-professionals.jpg"
+                      class="rounded-circle border border-3"
+                      style="width: 40px; height: 40px; margin-right: 10px; object-fit: cover;"
+                    />
+    
+                    <div>
+                      <h4 style="margin: 0; color: white" id="newPostName">noorjaber</h4>
                       <div class="d-flex align-items-center">
-                        <img src="${profileImage}" class="rounded-circle border border-4" style="width: 40px; height:40px; margin-right: 10px;">
-                        <div>
-                          <h4 style="margin: 0; color:white">${author.name}</h4>
-                          <div class="d-flex align-items-center">
-                            <p style="margin: 0; color:white">@${author.username}</p>
-                            <h6 style="margin: 0 0 0 10px; color: rgb(169, 169, 169);">${post.created_at}</h6>
-                          </div>
-                        </div>
-                      </div>
-                      <div id="btnDeleteUpdate" style="margin-left: auto;">
-                        ${btnEditContent}
+                        <p style="margin: 0; color: white" id="newPostUsername" >@nr.jb29</p>
+                        <h6 style="margin: 0 0 0 10px; color: rgb(169, 169, 169)">
+                          5 min ago
+                        </h6>
                       </div>
                     </div>
-      
-                    <div class="card-body">
-                      <p style="color:white">${post.body}</p>
-                      ${postImage ? `<img src="${postImage}" class="w-100" style="    height: 24pc">` : ''}
-                      <span style="margin-left: 5px;color:white">(${post.comments_count}) Comments</span>
-                      <span style="margin-left: 5px;color:white">(0) Shares</span>
-      
-                      <hr style="color:white">
-                      <div class="d-flex align-items-center" style="color:white;">
-      
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-heart " viewBox="0 0 16 16" style="margin-left: 15px; cursor: pointer;" id="likeIcon">
-                          <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
-                        </svg>
-      
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-chat-dots" viewBox="0 0 16 16" style="margin-left: 30px;cursor:pointer" data-bs-toggle="modal" data-bs-target="#showPostByModal" onclick="showModalForComment(${post.id})">
-                          <path d="M5 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
-                          <path d="m2.165 15.803.02-.004c1.83-.363 2.948-.842 3.468-1.105A9 9 0 0 0 8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6a10.4 10.4 0 0 1-.524 2.318l-.003.011a11 11 0 0 1-.244.637c-.079.186.074.394.273.362a22 22 0 0 0 .693-.125m.8-3.108a1 1 0 0 0-.287-.801C1.618 10.83 1 9.468 1 8c0-3.192 3.004-6 7-6s7 2.808 7 6-3.004 6-7 6a8 8 0 0 1-2.088-.272 1 1 0 0 0-.711.074c-.387.196-1.24.57-2.634.893a11 11 0 0 0 .398-2"/>
-                        </svg>
-      
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16" style="margin-left: 30px;cursor:pointer">
-                          <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z"/>
-                        </svg>
-      
-                      </div>  
+                  </div>
+    
+                  <div class="card-body">
+                    <img
+                      src="./tulips-planting-and-growing-tulips-1402137-08-aee8737736d848ef95f0a340705d9bf9.jpg"
+                      class="w-100"
+                      style="height: 24pc"
+                      
+                    />
+                    <h5 style="color: white" class="pt-2">Hi every one</h5>
+                    <p style="color: white">let's go to study together</p>
+                    <hr style="color: white" />
+                    <div class="d-flex align-items-center" style="color: white">
+                      <span style="margin-left: 5px">(3) Comments</span>
+    
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        fill="currentColor"
+                        class="bi bi-heart"
+                        viewBox="0 0 16 16"
+                        style="margin-left: 15px; cursor: pointer"
+                      >
+                        <path
+                          d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"
+                        />
+                      </svg>
+    
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        fill="currentColor"
+                        class="bi bi-chat-dots"
+                        viewBox="0 0 16 16"
+                        style="margin-left: 15px; cursor: pointer"
+                      >
+                        <path
+                          d="M5 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2"
+                        />
+                        <path
+                          d="m2.165 15.803.02-.004c1.83-.363 2.948-.842 3.468-1.105A9 9 0 0 0 8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6a10.4 10.4 0 0 1-.524 2.318l-.003.011a11 11 0 0 1-.244.637c-.079.186.074.394.273.362a22 22 0 0 0 .693-.125m.8-3.108a1 1 0 0 0-.287-.801C1.618 10.83 1 9.468 1 8c0-3.192 3.004-6 7-6s7 2.808 7 6-3.004 6-7 6a8 8 0 0 1-2.088-.272 1 1 0 0 0-.711.074c-.387.196-1.24.57-2.634.893a11 11 0 0 0 .398-2"
+                        />
+                      </svg>
+    
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        fill="currentColor"
+                        class="bi bi-send"
+                        viewBox="0 0 16 16"
+                        style="margin-left: 15px; cursor: pointer"
+                      >
+                        <path
+                          d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z"
+                        />
+                      </svg>
                     </div>
                   </div>
                 </div>
-              `;
-            }
-            const postsContainer = document.getElementById("userPost");
-            postsContainer.innerHTML = postsHTML;
-            setupUI();
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
-      }
-      //Delete btn
-function btnPostDelete(postObj){
-  let post = JSON.parse(decodeURIComponent(postObj))
-  console.log(post)
+              </div>
+              <!-- // POSTS // -->
+            </div>
+          </div>
+      </div>
+      <!-- // MAIN container // -->
+      
+    </main>
 
-  document.getElementById("delete-post-id-input").value = post.id
+  </body>
 
-  let postModal = new bootstrap.Modal(document.getElementById("delete-modal"),{})
-  postModal.toggle()
-}
-
-function confirmPostDelete() {
-  const token = localStorage.getItem("token");
-  const postId = document.getElementById("delete-post-id-input").value;
-  const url = `https://tarmeezacademy.com/api/v1/posts/${postId}`;
-  let headers = {
-    "Authorization": `Bearer ${token}`,
-    "Content-Type": "multipart/form-data"
-  };
-  axios.delete(url, { headers: headers })
-    .then(function (response) {
-      console.log(response);
-      const modal = document.getElementById("delete-modal");
-      const modalInstance = bootstrap.Modal.getInstance(modal);
-      modalInstance.hide()
-      showPostUser() 
-    })
-    .catch(function (error) {
-      console.log("Error:", error);
-    });
-}
-//Update btn
-function btnPostUpdate(postObj){
-    
-  let post = JSON.parse(decodeURIComponent(postObj))
-  console.log(post) 
-
-  document.getElementById("titleModal").innerHTML = "Update post"
-  document.getElementById("post-id-input").value = post.id
-  document.getElementById("body-input").value = post.body
-
-  let postModal = new bootstrap.Modal(document.getElementById("add-modal"),{})
-  postModal.toggle()
-}
-
-//Update btn
-function btnPostUpdate(postObj) {
-  let post = JSON.parse(decodeURIComponent(postObj));
-  console.log(post);
-
-  document.getElementById("titleModal").innerHTML = "Update post";
-  document.getElementById("post-id-input").value = post.id;
-  document.getElementById("body-input").value = post.body;
-
-  let postModal = new bootstrap.Modal(document.getElementById("addPostWithImg-modal"), {});
-  postModal.toggle();
-}
-
-function confirmPostUpdate() {
-  const token = localStorage.getItem("token");
-  const postId = document.getElementById("post-id-input").value;
-  const body = document.getElementById("body-input").value;
-  const image = document.getElementById("img-input").files[0]; // يمكن أن يكون غير مطلوب إذا لم تكن هناك صورة
-
-  let formData = new FormData();
-  formData.append("body", body);
-  if (image) {
-    formData.append("image", image);
-  }
-
-  axios.put(`${url}/posts/${postId}`, formData, {
-    headers: {
-      "Authorization": `Bearer ${token}`,
-      "Content-Type": "multipart/form-data"
-    }
-  })
-  .then(function (response) {
-    console.log(response);
-
-    const modal = document.getElementById("addPostWithImg-modal");
-    const modalInstance = bootstrap.Modal.getInstance(modal);
-    modalInstance.hide();
-    
-    showPost();
-    setupUI();
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-}
-
-
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="profileUserPage.js"></script>
+  
+<script>
+  toggleLoader(true); 
+  setupUI()
+  getUserForPage()
+  showPostUser();
+  setTimeout(() => {
+  showContentAfterDataLoad();
+}, 1000); 
 </script>
   
 </html>
