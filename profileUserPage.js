@@ -155,15 +155,6 @@ function showPostUser() {
               </div>
             </div>
           `;
-
-          // let img_container_check = document.querySelector(".post-image-container");
-          // let img = document.getElementById('post-img');
-          // console.log(img.offsetHeight);
-          //  if(img.clientHeight > img_container_check.clientHeight){
-          //     console.log("big");
-          //  }else{
-          //   console.log("small");
-          //  }
         }
         const postsContainer = document.getElementById("userPost");
         postsContainer.innerHTML = postsHTML;
@@ -487,7 +478,7 @@ function confirmPostUpdate() {
       setupUI();
     })
     .catch(function (error) {
-      console.log("❌ Update Error:", error.response?.data || error);
+      console.log(" Update Error:", error.response?.data || error);
       alert("Post update failed.");
     })
     .finally(() => toggleLoader(false));

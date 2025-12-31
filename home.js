@@ -30,10 +30,10 @@ function showContentAfterDataLoad() {
 
 
 document.getElementById('logo').addEventListener('click', function(event) {
-  event.preventDefault(); //عشان الصفحة ما ترجع تتحمل 
-  window.scrollTo({ //يمرر المستخدم إلى أعلى الصفحة
+  event.preventDefault(); 
+  window.scrollTo({ 
     top: 0,
-    behavior: 'smooth' // Smooth scrolling
+    behavior: 'smooth' 
   });
 });
 
@@ -102,10 +102,10 @@ function loginBtn(){
     .catch(function (error) {
     toggleLoader(false);
     if (error.response && error.response.data) {
-      console.log("⚠️ Error response:", error.response.data);
+      console.log("Error response:", error.response.data);
       alert(error.response.data.message || "Login failed.");
     } else {
-      console.log("❌ Unknown error:", error);
+      console.log("Unknown error:", error);
       alert("Something went wrong!");
     }
   });
@@ -125,7 +125,7 @@ function registerBtn() {
   let image = document.getElementById("img-username-input").files[0];
 
   if (!username || !password || !name || !image) {
-    alert("🛑 كل الحقول مطلوبة، بما فيها الصورة");
+    alert("كل الحقول مطلوبة، بما فيها الصورة");
     return;
   }
 
@@ -153,7 +153,6 @@ function registerBtn() {
     console.log(token);
     console.log(user);
 
-    // ✅ نقفل مودال التسجيل بعد النجاح فقط
     const modal = document.getElementById("register-modal");
     const modalInstance = bootstrap.Modal.getInstance(modal);
     modalInstance.hide();
@@ -163,7 +162,7 @@ function registerBtn() {
   .catch(function (error) {
     toggleLoader(false);
     if (error.response && error.response.data) {
-      console.log("❌ Register Error:", error.response.data);
+      console.log("Register Error:", error.response.data);
       alert(error.response.data.message || "Registration failed.");
     } else {
       console.log("Unknown error:", error);
@@ -349,15 +348,10 @@ function confirmPostDelete() {
 
   axios.delete(url, { headers: headers })
     .then(function (response) {
-      console.log(response);
-
-      // إغلاق نافذة الحذف
       const modal = document.getElementById("delete-modal");
       const modalInstance = bootstrap.Modal.getInstance(modal);
       modalInstance.hide();
-
-      // تحديث الواجهة
-      showPost();  // تأكد من استدعاء دالة عرض البوستات الجديدة
+      showPost(); 
     })
     .catch(function (error) {
       console.log("Error:", error);
@@ -408,7 +402,7 @@ function confirmPostUpdate() {
       setupUI();
     })
     .catch(function (error) {
-      console.log("❌ Update Error:", error.response?.data || error);
+      console.log("Update Error:", error.response?.data || error);
       alert("Post update failed.");
     })
     .finally(() => toggleLoader(false));
@@ -489,15 +483,12 @@ function showModalForComment(id) {
       const post = response.data.data;
       const comments = post.comments;
       const author = post.author;
-
-      // بيانات البوست
       const postBody = post.body || '';
       const postImage = (typeof post.image === 'string' && post.image) ? post.image : '';
       const profileImage = (typeof author.profile_image === 'string' && author.profile_image)
         ? author.profile_image
         : 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png';
 
-      // تعبئة بيانات المودال
       document.getElementById("modal-title-forComment").innerHTML = author.username;
       document.getElementById("modal-imgProfile-forComment").src = profileImage;
       document.getElementById("modal-Body-forComment").innerHTML = postBody;
@@ -509,8 +500,6 @@ function showModalForComment(id) {
       } else {
         modalImg.style.display = "none";
       }
-
-      // عرض التعليقات
       let commentContent = '';
       for (let comment of comments) {
         
@@ -530,7 +519,6 @@ function showModalForComment(id) {
       document.getElementById("commentContent").innerHTML = commentContent;
       document.getElementById("ifNoComment").innerHTML = comments.length === 0 ? "No comments yet" : "Comments:";
 
-      // إدخال تعليق جديد
       document.getElementById("addCommentText").innerHTML = `
         <div class="input-container" style="display: flex; align-items: center; padding: 9px;" id="div-addComment">
           <input type="text" id="commentInput" class="form-control" placeholder="Add a comment..." style="flex: 1; margin-right: 10px;">
